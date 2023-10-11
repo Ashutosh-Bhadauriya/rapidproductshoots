@@ -2,12 +2,12 @@ import Image from "next/image";
 
 const features = [
     {
-        headline: "Instant Results",
+        headline: "Get Instant Results",
         content: `Get results instantly in a matter of seconds. Don't like the result? Just click the button again to generate new product shoots effortlessly and promptly. Our lightning-fast AI-powered system ensures you don't waste precious time waiting for your visuals, putting you ahead in your marketing game.`,
         image: "/result-2",
     },
     {
-        headline: "High Quality",
+        headline: "High Quality Photos",
         content: `Product images generated are not only delivered swiftly but also boast high resolutions and exceptional quality. You can confidently use them for your e-commerce store, social media platforms, or any other marketing channels, knowing they'll catch eyes and captivate potential customers with their impeccable clarity and sharpness.`,
         image: "/result-1",
     },
@@ -43,7 +43,7 @@ export function FeaturesSection() {
             <div className="mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="mx-auto text-center">
                     <h1 className="mx-auto max-w-4xl text-4xl font-bold tracking-normal bg-yellow-300 inline-block text-slate-900 sm:text-6xl">
-                        Endless Features
+                        Endless Benefits
                     </h1>
                     <p className="mx-auto mt-6 max-w-xl text-lg pb-4 text-slate-700 leading-7">
                         See why you should use our AI Product Shoot generator.

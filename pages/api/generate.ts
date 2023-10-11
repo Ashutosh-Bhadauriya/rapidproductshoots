@@ -12,10 +12,10 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
   // Check if user is logged in
-  const session = await getServerSession(req, res, authOptions);
-  if (!session || !session.user) {
-    return res.status(500).json("Login to upload.");
-  }
+  // const session = await getServerSession(req, res, authOptions);
+  // if (!session || !session.user) {
+  //   return res.status(500).json("Login to upload.");
+  // }
 
   const imageUrl = req.body.imageUrl;
   // POST request to Replicate to start the image restoration generation process
@@ -28,11 +28,16 @@ export default async function handler(
     body: JSON.stringify({
       version:
         "b1c17d148455c1fda435ababe9ab1e03bc0d917cc3cf4251916f22c45c83c7df",
-      input: { img: imageUrl, version: "v1.4", scale: 2 },
+      input: { image_path: imageUrl, version: "v1.4", scale: 3, 
+      prompt: "Task chair+ in a well-lit home office-, surrounded by shelves of books and a large window with a scenic view+;ergonomic, adjustable, comfortable, professional",
+      negative_prompt:"illustration, 3d, sepia, painting, cartoons, sketch, (worst quality:2)",
+      image_num: 1,
+    },
     }),
   });
 
   let jsonStartResponse = await startResponse.json();
+  console.log(jsonStartResponse);
   let endpointUrl = jsonStartResponse.urls.get;
 
   // GET request to get the status of the image restoration process & return the result when it's ready
@@ -48,9 +53,10 @@ export default async function handler(
       },
     });
     let jsonFinalResponse = await finalResponse.json();
+    console.log(jsonFinalResponse)
 
     if (jsonFinalResponse.status === "succeeded") {
-      restoredImage = jsonFinalResponse.output;
+      restoredImage = jsonFinalResponse.output[1];
     } else if (jsonFinalResponse.status === "failed") {
       break;
     } else {

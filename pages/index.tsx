@@ -5,6 +5,7 @@ import Link from "next/link";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { FeaturesSection } from "../components/FeaturesSection";
+import Pricing from "../components/Pricing";
 
 const Home: NextPage = () => {
     return (
@@ -100,6 +101,7 @@ const Home: NextPage = () => {
                 </div>
             </main>
             <FeaturesSection />
+            <Pricing />
             <Footer />
         </div>
     );
