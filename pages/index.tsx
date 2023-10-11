@@ -47,14 +47,14 @@ const Home: NextPage = () => {
                 </div>
                 <div className="flex justify-between items-center w-full flex-col sm:mt-10 mt-6">
                     <div className="flex flex-col space-y-10 mt-4 mb-16">
-                        <div className="flex space-y-6 flex-col ">
+                        <div className="flex space-y-6 flex-col">
                             <div>
                                 <h2 className="mb-1 font-medium text-lg">
-                                    Uploaded Photo
+                                    Uploaded Product Photo
                                 </h2>
                                 <Image
-                                    alt="Original photo of my bro"
-                                    src="/michael.jpg"
+                                    alt="Original product photo"
+                                    src="/shoot-2-base.jpg"
                                     className="w-96 h-96 rounded-2xl m-auto"
                                     width={400}
                                     height={400}
@@ -66,32 +66,32 @@ const Home: NextPage = () => {
                                 </h2>
                                 <div className="flex sm:flex-row sm:space-x-2 flex-col">
                                     <Image
-                                        alt="Restored photo of my bro"
+                                        alt="generated product shoot"
                                         width={200}
                                         height={200}
-                                        src="/michael-new.jpg"
-                                        className="w-48 h-48 rounded-2xl sm:mt-0 mt-2"
+                                        src="/shoot-2-result-1.jpg"
+                                        className="w-64 h-64 rounded-2xl sm:mt-0 mt-2"
                                     />
                                     <Image
-                                        alt="Restored photo of my bro"
+                                        alt="generated product shoot"
                                         width={200}
                                         height={200}
-                                        src="/michael-new.jpg"
-                                        className="w-48 h-48 rounded-2xl sm:mt-0 mt-2"
+                                        src="/shoot-2-result-2.jpg"
+                                        className="w-64 h-64 rounded-2xl sm:mt-0 mt-2"
                                     />
                                     <Image
-                                        alt="Restored photo of my bro"
+                                        alt="generated product shoot"
                                         width={200}
                                         height={200}
-                                        src="/michael-new.jpg"
-                                        className="w-48 h-48 rounded-2xl sm:mt-0 mt-2"
+                                        src="/shoot-2-result-3.jpg"
+                                        className="w-64 h-64 rounded-2xl sm:mt-0 mt-2"
                                     />
                                     <Image
-                                        alt="Restored photo of my bro"
+                                        alt="generated product shoot"
                                         width={200}
                                         height={200}
-                                        src="/michael-new.jpg"
-                                        className="w-48 h-48 rounded-2xl sm:mt-0 mt-2"
+                                        src="/shoot-2-result-4.jpg"
+                                        className="w-64 h-64 rounded-2xl sm:mt-0 mt-2"
                                     />
                                 </div>
                             </div>
