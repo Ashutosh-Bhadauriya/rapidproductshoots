@@ -11,20 +11,17 @@ import { UploadDropzone } from "@bytescale/upload-widget-react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import LoadingDots from "../components/LoadingDots";
-import appendNewToName from "../utils/appendNewToName";
-import downloadPhoto from "../utils/downloadPhoto";
 import va from "@vercel/analytics";
 import useSWR from "swr";
 import Link from "next/link";
+import { withRouter } from "next/router";
+import { SettingsForm } from "../components/SettingsForm";
 
 const Home: NextPage = () => {
     const [originalPhoto, setOriginalPhoto] = useState<string | null>(null);
-    const [restoredImage, setRestoredImage] = useState<string | null>(null);
+    const [generatedImages, setGeneratedImages] = useState([]);
     const [loading, setLoading] = useState<boolean>(false);
-    const [restoredLoaded, setRestoredLoaded] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
-    const [photoName, setPhotoName] = useState<string | null>(null);
-
     const fetcher = (url: string) => fetch(url).then((res) => res.json());
     const { data, mutate } = useSWR("/api/remaining", fetcher);
     // const { data: session, status } = useSession();
@@ -64,9 +61,7 @@ const Home: NextPage = () => {
                             transformationPreset: "thumbnail",
                         },
                     });
-                    setPhotoName(imageName);
                     setOriginalPhoto(imageUrl);
-                    generatePhoto(imageUrl);
                 }
             }}
             width="670px"
@@ -86,12 +81,12 @@ const Home: NextPage = () => {
             body: JSON.stringify({ imageUrl: fileUrl }),
         });
 
-        let newPhoto = await res.json();
+        let generatedPhotos = await res.json();
         if (res.status !== 200) {
-            setError(newPhoto);
+            setError("Failed to generate product shoots! Try again later.");
         } else {
             mutate();
-            setRestoredImage(newPhoto);
+            setGeneratedImages(generatedPhotos);
         }
         setLoading(false);
     }
@@ -126,8 +121,8 @@ const Home: NextPage = () => {
                         to a premium plan now!
                     </p>
                 )}
-                <div className="flex justify-between items-center w-full flex-col mt-4">
-                    <UploadDropZone />
+                <div className="flex justify-between items-center w-full flex-col mt-8">
+                    {!originalPhoto && <UploadDropZone />}
 
                     {/* {status === "loading" ? (
                         <div className="max-w-[670px] h-[250px] flex justify-center items-center">
@@ -168,49 +163,19 @@ const Home: NextPage = () => {
                             </div>
                         )
                     )} */}
-                    {originalPhoto && !restoredImage && (
-                        <Image
-                            alt="original photo"
-                            src={originalPhoto}
-                            className="rounded-2xl"
-                            width={475}
-                            height={475}
-                        />
-                    )}
-                    {restoredImage && originalPhoto && !sideBySide && (
-                        <div className="flex sm:space-x-4 sm:flex-row flex-col">
-                            <div>
-                                <h2 className="mb-1 font-medium text-lg">
-                                    Original Photo
-                                </h2>
-                                <Image
-                                    alt="original photo"
-                                    src={originalPhoto}
-                                    className="rounded-2xl relative"
-                                    width={475}
-                                    height={475}
+                    {originalPhoto && (
+                        <div className="flex justify-between w-full">
+                            <Image
+                                alt="original photo"
+                                src={originalPhoto}
+                                className="rounded-2xl"
+                                width={475}
+                                height={475}
+                            />
+                            <div className="settings w-1/2">
+                                <SettingsForm
+                                    originalImageUrl={originalPhoto}
                                 />
-                            </div>
-                            <div className="sm:mt-0 mt-8">
-                                <h2 className="mb-1 font-medium text-lg">
-                                    Restored Photo
-                                </h2>
-                                <a
-                                    href={restoredImage}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                >
-                                    <Image
-                                        alt="restored photo"
-                                        src={restoredImage}
-                                        className="rounded-2xl relative sm:mt-0 mt-2 cursor-zoom-in"
-                                        width={475}
-                                        height={475}
-                                        onLoadingComplete={() =>
-                                            setRestoredLoaded(true)
-                                        }
-                                    />
-                                </a>
                             </div>
                         </div>
                     )}
@@ -230,41 +195,13 @@ const Home: NextPage = () => {
                             role="alert"
                         >
                             <div className="bg-red-500 text-white font-bold rounded-t px-4 py-2">
-                                Please try again in 24 hours
+                                {error}
                             </div>
                             <div className="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
                                 {error}
                             </div>
                         </div>
                     )}
-                    <div className="flex space-x-2 justify-center">
-                        {originalPhoto && !loading && (
-                            <button
-                                onClick={() => {
-                                    setOriginalPhoto(null);
-                                    setRestoredImage(null);
-                                    setRestoredLoaded(false);
-                                    setError(null);
-                                }}
-                                className="bg-black rounded-full text-white font-medium px-4 py-2 mt-8 hover:bg-black/80 transition"
-                            >
-                                Upload Product Photo
-                            </button>
-                        )}
-                        {restoredLoaded && (
-                            <button
-                                onClick={() => {
-                                    downloadPhoto(
-                                        restoredImage!,
-                                        appendNewToName(photoName!)
-                                    );
-                                }}
-                                className="bg-white rounded-full text-black border font-medium px-4 py-2 mt-8 hover:bg-gray-100 transition"
-                            >
-                                Download Restored Photo
-                            </button>
-                        )}
-                    </div>
                 </div>
             </main>
             <Footer />

@@ -1,9 +1,14 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
-type Data = string;
+type Data = string[] | string;
 interface ExtendedNextApiRequest extends NextApiRequest {
   body: {
     imageUrl: string;
+    prompt: string,
+    product_size: string,
+    image_resolution: string
+    negative_prompt: string,
+    enhance_prompt: boolean
   };
 }
 
@@ -18,6 +23,12 @@ export default async function handler(
   // }
 
   const imageUrl = req.body.imageUrl;
+  const prompt = req.body.prompt;
+  const product_size = req.body.product_size;
+  const image_resolution = req.body.image_resolution;
+  const negative_prompt = req.body.negative_prompt;
+  const enhance_prompt = req.body.enhance_prompt;
+
   // POST request to Replicate to start the image restoration generation process
   let startResponse = await fetch("https://api.replicate.com/v1/predictions", {
     method: "POST",
@@ -28,10 +39,14 @@ export default async function handler(
     body: JSON.stringify({
       version:
         "b1c17d148455c1fda435ababe9ab1e03bc0d917cc3cf4251916f22c45c83c7df",
-      input: { image_path: imageUrl, version: "v1.4", scale: 3, 
-      prompt: "Task chair+ in a well-lit home office-, surrounded by shelves of books and a large window with a scenic view+;ergonomic, adjustable, comfortable, professional",
-      negative_prompt:"illustration, 3d, sepia, painting, cartoons, sketch, (worst quality:2)",
-      image_num: 1,
+      input: { image_path: imageUrl, scale: 3, 
+      prompt: prompt,
+      negative_prompt: negative_prompt,
+      image_num: 4,
+      guidance_scale: 7.5,
+      pixel: image_resolution,
+      product_size: product_size,
+      api_key: enhance_prompt ? process.env.OPENAI_API_KEY : ""
     },
     }),
   });
@@ -41,8 +56,8 @@ export default async function handler(
   let endpointUrl = jsonStartResponse.urls.get;
 
   // GET request to get the status of the image restoration process & return the result when it's ready
-  let restoredImage: string | null = null;
-  while (!restoredImage) {
+  let productImages: string[] | null = null;
+  while (!productImages) {
     // Loop in 1s intervals until the alt text is ready
     console.log("polling for result...");
     let finalResponse = await fetch(endpointUrl, {
@@ -56,14 +71,16 @@ export default async function handler(
     console.log(jsonFinalResponse)
 
     if (jsonFinalResponse.status === "succeeded") {
-      restoredImage = jsonFinalResponse.output[1];
+      productImages = jsonFinalResponse.output;
     } else if (jsonFinalResponse.status === "failed") {
       break;
     } else {
       await new Promise((resolve) => setTimeout(resolve, 1000));
     }
   }
-  res
-    .status(200)
-    .json(restoredImage ? restoredImage : "Failed to restore image");
+  if(productImages !== null) {
+    res.status(200).send(productImages);
+  } else {
+    res.status(500).send("Failed to generate image");
+  }
 }

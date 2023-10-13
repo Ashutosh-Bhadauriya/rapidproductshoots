@@ -10,9 +10,17 @@
     "dependencies": {
         "@bytescale/upload-widget-react": "^4.9.0",
         "@headlessui/react": "^1.7.7",
+        "@hookform/resolvers": "^3.3.2",
         "@prisma/client": "^4.11.0",
+        "@radix-ui/react-label": "^2.0.2",
+        "@radix-ui/react-select": "^2.0.0",
+        "@radix-ui/react-slot": "^1.0.2",
         "@tensorflow/tfjs": "^3.21.0",
+        "@uidotdev/usehooks": "^2.4.0",
         "@vercel/analytics": "^1.0.2",
+        "class-variance-authority": "^0.7.0",
+        "clsx": "^2.0.0",
+        "lucide-react": "^0.287.0",
         "next": "latest",
         "nsfw-filter": "^1.0.2",
         "nsfwjs": "^2.4.2",
@@ -20,9 +28,14 @@
         "react-compare-slider": "^2.2.0",
         "react-countup": "^6.4.0",
         "react-dom": "18.2.0",
+        "react-hook-form": "^7.47.0",
+        "react-hooks-forms": "^0.8.1",
         "react-loader-spinner": "^5.3.4",
         "react-use-measure": "^2.1.1",
-        "swr": "^2.1.0"
+        "swr": "^2.1.0",
+        "tailwind-merge": "^1.14.0",
+        "tailwindcss-animate": "^1.0.7",
+        "zod": "^3.22.4"
     },
     "devDependencies": {
         "@types/node": "18.11.3",

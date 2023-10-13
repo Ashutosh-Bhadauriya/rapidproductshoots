@@ -9,14 +9,23 @@ export default function Header({ photo }: { photo?: string | undefined }) {
                     ✨AI Product Shoots
                 </h1>
             </Link>
+
             {photo ? (
-                <Image
-                    alt="Profile picture"
-                    src={photo}
-                    className="w-10 rounded-full"
-                    width={32}
-                    height={28}
-                />
+                <div className="flex justify-between">
+                    <Link
+                        className="mr-2 rounded-xl text-slate-900 font-medium px-4 py-3 hover:bg-slate-100"
+                        href="/create"
+                    >
+                        Create
+                    </Link>
+                    <Image
+                        alt="Profile picture"
+                        src={photo}
+                        className="w-10 rounded-full"
+                        width={32}
+                        height={28}
+                    />
+                </div>
             ) : (
                 <div className="flex justify-between">
                     <Link
