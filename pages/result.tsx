@@ -4,10 +4,23 @@ import Header from "../components/Header";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import Results from "../components/Results";
+import { useReward } from "react-rewards";
+import { useEffect, useState } from "react";
 
 const Home: NextPage = () => {
     const router = useRouter();
-    const images = router.query.images as string[];
+    const [images, setImages] = useState<string[]>([]);
+    const { reward, isAnimating } = useReward("rewardId", "confetti", {
+        lifetime: 200,
+        elementCount: 200,
+        spread: 360,
+    });
+    useEffect(() => {
+        if (router.isReady) {
+            setImages(router.query.images as string[]);
+            reward();
+        }
+    }, [router.isReady]);
 
     return (
         <div className="flex max-w-6xl mx-auto flex-col items-center justify-center py-2 min-h-screen">
@@ -22,6 +35,7 @@ const Home: NextPage = () => {
                 <h1 className="mx-auto max-w-4xl font-display text-3xl font-bold tracking-normal text-slate-900 sm:text-5xl mb-5">
                     Results
                 </h1>
+                <span id="rewardId" />
                 <Results images={images} />
                 {/* {status === "authenticated" && data && ( */}
             </main>
