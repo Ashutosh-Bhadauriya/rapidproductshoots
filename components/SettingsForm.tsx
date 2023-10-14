@@ -1,5 +1,6 @@
 import { useState } from "react";
 import LoadingDots from "./LoadingDots";
+import { useRouter } from "next/router";
 
 export function SettingsForm({ originalImageUrl }: any) {
     const [prompt, setPrompt] = useState("");
@@ -11,6 +12,8 @@ export function SettingsForm({ originalImageUrl }: any) {
     const [aiPromptEnhancement, setAiPromptEnhancement] = useState(false);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
+
+    const router = useRouter();
 
     async function generatePhotos(e: any) {
         e.preventDefault();
@@ -33,10 +36,15 @@ export function SettingsForm({ originalImageUrl }: any) {
         });
 
         let resultant_images = await res.json();
+        resultant_images.push(originalImageUrl);
         if (res.status !== 200) {
             setError("Failed to generate product shoots! Try again later.");
         } else {
             console.log(resultant_images);
+            router.push({
+                pathname: "/result",
+                query: { images: resultant_images },
+            });
         }
         setLoading(false);
     }
@@ -108,7 +116,7 @@ export function SettingsForm({ originalImageUrl }: any) {
                 </label>
             </div>
             {loading && (
-                <button className="bg-black/80 rounded-xl text-white font-medium px-4 py-3 ">
+                <button className="bg-black/80 rounded-xl text-white font-medium px-4 py-2 ">
                     <LoadingDots color="white" style="large" />
                 </button>
             )}

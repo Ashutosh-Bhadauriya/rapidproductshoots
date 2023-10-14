@@ -79,6 +79,7 @@ export default async function handler(
     }
   }
   if(productImages !== null) {
+    console.log("sended");
     res.status(200).send(productImages);
   } else {
     res.status(500).send("Failed to generate image");

@@ -31,6 +31,7 @@
         "react-hook-form": "^7.47.0",
         "react-hooks-forms": "^0.8.1",
         "react-loader-spinner": "^5.3.4",
+        "react-rewards": "^2.0.4",
         "react-use-measure": "^2.1.1",
         "swr": "^2.1.0",
         "tailwind-merge": "^1.14.0",

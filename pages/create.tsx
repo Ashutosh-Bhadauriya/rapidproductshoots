@@ -164,7 +164,7 @@ const Home: NextPage = () => {
                         )
                     )} */}
                     {originalPhoto && (
-                        <div className="flex justify-between w-full">
+                        <div className="md:flex-row flex-col flex justify-between w-full">
                             <Image
                                 alt="original photo"
                                 src={originalPhoto}
@@ -172,7 +172,7 @@ const Home: NextPage = () => {
                                 width={475}
                                 height={475}
                             />
-                            <div className="settings w-1/2">
+                            <div className="settings w-full mt-8 md:mt-0 md:w-1/2">
                                 <SettingsForm
                                     originalImageUrl={originalPhoto}
                                 />
