@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import downloadPhoto from "../utils/downloadPhoto";
+import LoadingDots from "./LoadingDots";
 
 export default function ResultImage({ src, alt, generated }: any) {
     const [image, setImage] = useState("");
@@ -16,15 +17,9 @@ export default function ResultImage({ src, alt, generated }: any) {
             />
             {!generated && <div className="text-base mt-4">{alt}</div>}
             {generated && (
-                <div className="flex justify-around items-center basis-0">
+                <div className="flex justify-center items-center basis-0">
                     <button
-                        className="text-base mr-2 rounded-xl text-slate-900 bg-slate-200 font-medium px-6 py-3 hover:bg-slate-300"
-                        onClick={() => setImage(alt)}
-                    >
-                        ✨Upscale✨
-                    </button>
-                    <button
-                        className="text-base mr-2 rounded-xl text-slate-900 bg-slate-200 font-medium px-9 py-3 hover:bg-slate-300"
+                        className="text-base mr-2 rounded-xl text-slate-900 bg-slate-200 font-medium w-1/2 py-3 hover:bg-slate-300"
                         onClick={() =>
                             downloadPhoto(image, "product-shoot.png")
                         }
