@@ -16,32 +16,13 @@ import Link from "next/link";
 import { SettingsForm } from "../components/SettingsForm";
 import { useRouter } from "next/router";
 
-export async function getServerSideProps() {
-    await new Promise((resolve) => setTimeout(resolve, 500));
-
-    const res = await fetch(process.env.PUBLIC_URL + "/api/getuser", {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-        },
-    });
-
-    let user_id = await res.json();
-    if (res.status !== 200) {
-        user_id = null;
-    }
-    return {
-        props: {
-            user_id: user_id,
-        }, // passed to the page component as props
-    };
-}
-
-const Home: NextPage = ({ user_id }: any) => {
+const Home: NextPage = () => {
     const router = useRouter();
     const [originalPhoto, setOriginalPhoto] = useState<string | null>(null);
     const fetcher = (url: string) => fetch(url).then((res) => res.json());
     const { data, mutate } = useSWR("/api/remaining", fetcher);
+
+    const { data: user_data } = useSWR("/api/getuser", fetcher);
 
     useEffect(() => {
         if (router.isReady) {
@@ -75,7 +56,6 @@ const Home: NextPage = ({ user_id }: any) => {
             onUpdate={({ uploadedFiles }) => {
                 if (uploadedFiles.length !== 0) {
                     const image = uploadedFiles[0];
-                    const imageName = image.originalFile.originalFileName;
                     const imageUrl = UrlBuilder.url({
                         accountId: image.accountId,
                         filePath: image.filePath,
@@ -99,48 +79,51 @@ const Home: NextPage = ({ user_id }: any) => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <Header user_id={user_id} />
-            <main className="flex flex-1 w-full flex-col items-center justify-center text-center px-4 mt-4 sm:mb-0 mb-8">
-                <h1 className="mx-auto max-w-4xl font-display text-4xl font-bold tracking-normal text-slate-900 sm:text-6xl mb-5">
-                    Generate Product Shoots
-                </h1>
-                {data && (
-                    <p className="text-slate-500">
-                        You have{" "}
-                        <span className="font-semibold">
-                            {data.remainingGenerations} generations
-                        </span>{" "}
-                        left this month. Need more generations?{" "}
-                        <Link
-                            href="/upgrade"
-                            className="font-bold text-slate-900 underline"
-                        >
-                            Upgrade
-                        </Link>{" "}
-                        to a premium plan now!
-                    </p>
-                )}
-                <div className="flex justify-between items-center w-full flex-col mt-8">
-                    {!originalPhoto && <UploadDropZone />}
-                    {originalPhoto && (
-                        <div className="md:flex-row flex-col flex justify-between w-full">
-                            <Image
-                                alt="original photo"
-                                src={originalPhoto}
-                                className="rounded-2xl"
-                                width={475}
-                                height={475}
-                            />
-                            <div className="settings w-full mt-8 md:mt-0 md:w-1/2">
-                                <SettingsForm
-                                    originalImageUrl={originalPhoto}
-                                />
-                            </div>
+            {user_data && data && (
+                <>
+                    <Header user_id={user_data.user_id} />
+                    <main className="flex flex-1 w-full flex-col items-center justify-center text-center px-4 mt-4 sm:mb-0 mb-8">
+                        <h1 className="mx-auto max-w-4xl font-display text-4xl font-bold tracking-normal text-slate-900 sm:text-6xl mb-5">
+                            Generate Product Shoots
+                        </h1>
+
+                        <p className="text-slate-500">
+                            You have{" "}
+                            <span className="font-semibold">
+                                {data.remainingGenerations} generations
+                            </span>{" "}
+                            left this month. Need more generations?{" "}
+                            <Link
+                                href="/upgrade"
+                                className="font-bold text-slate-900 underline"
+                            >
+                                Upgrade
+                            </Link>{" "}
+                            to a premium plan now!
+                        </p>
+                        <div className="flex justify-between items-center w-full flex-col mt-8">
+                            {!originalPhoto && <UploadDropZone />}
+                            {originalPhoto && (
+                                <div className="md:flex-row flex-col flex justify-between w-full">
+                                    <Image
+                                        alt="original photo"
+                                        src={originalPhoto}
+                                        className="rounded-2xl"
+                                        width={475}
+                                        height={475}
+                                    />
+                                    <div className="settings w-full mt-8 md:mt-0 md:w-1/2">
+                                        <SettingsForm
+                                            originalImageUrl={originalPhoto}
+                                        />
+                                    </div>
+                                </div>
+                            )}
                         </div>
-                    )}
-                </div>
-            </main>
-            <Footer />
+                    </main>
+                    <Footer />
+                </>
+            )}
         </div>
     );
 };
