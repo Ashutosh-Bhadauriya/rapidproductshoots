@@ -24,5 +24,12 @@ export default function HankoLogout() {
         }
     };
 
-    return <button onClick={logout}>Logout</button>;
+    return (
+        <button
+            className="py-2 px-6 border-2 border-red-900 bg-red-500 text-slate-900 rounded-xl"
+            onClick={logout}
+        >
+            Logout
+        </button>
+    );
 }
