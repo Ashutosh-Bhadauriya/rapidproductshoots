@@ -4,7 +4,7 @@ import { Hanko } from "@teamhanko/hanko-elements";
 
 const hankoApi = process.env.NEXT_PUBLIC_HANKO_API_URL;
 
-export function LogoutBtn() {
+export default function HankoLogout() {
     const router = useRouter();
     const [hanko, setHanko] = useState<Hanko>();
 

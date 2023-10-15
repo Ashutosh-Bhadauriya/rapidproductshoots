@@ -18,7 +18,10 @@ export default function Header({ user_id }: { user_id?: string | undefined }) {
                     >
                         Create
                     </Link>
-                    <Link href="/profile">
+                    <Link
+                        href="/profile"
+                        className="hover:bg-slate-100 px-4 py-3 rounded-xl"
+                    >
                         <User />
                     </Link>
                 </div>
