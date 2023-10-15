@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { UrlBuilder } from "@bytescale/sdk";
 import {
     UploadWidgetConfig,
@@ -10,21 +10,23 @@ import {
 import { UploadDropzone } from "@bytescale/upload-widget-react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import LoadingDots from "../components/LoadingDots";
 import va from "@vercel/analytics";
 import useSWR from "swr";
 import Link from "next/link";
-import { withRouter } from "next/router";
 import { SettingsForm } from "../components/SettingsForm";
+import { useRouter } from "next/router";
 
 const Home: NextPage = () => {
+    const router = useRouter();
     const [originalPhoto, setOriginalPhoto] = useState<string | null>(null);
-    const [generatedImages, setGeneratedImages] = useState([]);
-    const [loading, setLoading] = useState<boolean>(false);
-    const [error, setError] = useState<string | null>(null);
     const fetcher = (url: string) => fetch(url).then((res) => res.json());
     const { data, mutate } = useSWR("/api/remaining", fetcher);
     // const { data: session, status } = useSession();
+    useEffect(() => {
+        if (router.isReady) {
+            setOriginalPhoto(router.query.image as string);
+        }
+    }, [router.isReady]);
 
     const options: UploadWidgetConfig = {
         apiKey: !!process.env.NEXT_PUBLIC_UPLOAD_API_KEY
@@ -69,28 +71,6 @@ const Home: NextPage = () => {
         />
     );
 
-    async function generatePhoto(fileUrl: string) {
-        await new Promise((resolve) => setTimeout(resolve, 500));
-        setLoading(true);
-
-        const res = await fetch("/api/generate", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ imageUrl: fileUrl }),
-        });
-
-        let generatedPhotos = await res.json();
-        if (res.status !== 200) {
-            setError("Failed to generate product shoots! Try again later.");
-        } else {
-            mutate();
-            setGeneratedImages(generatedPhotos);
-        }
-        setLoading(false);
-    }
-
     return (
         <div className="flex max-w-6xl mx-auto flex-col items-center justify-center py-2 min-h-screen">
             <Head>
@@ -114,7 +94,7 @@ const Home: NextPage = () => {
                         left this month. Need more generations?{" "}
                         <Link
                             href="/upgrade"
-                            className="font-bold text-slate-900"
+                            className="font-bold text-slate-900 underline"
                         >
                             Upgrade
                         </Link>{" "}
@@ -176,29 +156,6 @@ const Home: NextPage = () => {
                                 <SettingsForm
                                     originalImageUrl={originalPhoto}
                                 />
-                            </div>
-                        </div>
-                    )}
-                    {loading && (
-                        <button
-                            disabled
-                            className="bg-black rounded-full text-white font-medium px-4 pt-2 pb-3 mt-8 hover:bg-black/80 w-40"
-                        >
-                            <span className="pt-4">
-                                <LoadingDots color="white" style="large" />
-                            </span>
-                        </button>
-                    )}
-                    {error && (
-                        <div
-                            className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-xl mt-8 max-w-[575px]"
-                            role="alert"
-                        >
-                            <div className="bg-red-500 text-white font-bold rounded-t px-4 py-2">
-                                {error}
-                            </div>
-                            <div className="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
-                                {error}
                             </div>
                         </div>
                     )}

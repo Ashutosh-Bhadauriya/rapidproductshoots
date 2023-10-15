@@ -11,12 +11,15 @@ export function SettingsForm({ originalImageUrl }: any) {
     );
     const [aiPromptEnhancement, setAiPromptEnhancement] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState("");
 
     const router = useRouter();
 
     async function generatePhotos(e: any) {
         e.preventDefault();
+        if (prompt === "") {
+            alert("Prompt cannot be empty!");
+            return;
+        }
         await new Promise((resolve) => setTimeout(resolve, 500));
         setLoading(true);
 
@@ -38,7 +41,7 @@ export function SettingsForm({ originalImageUrl }: any) {
         let resultant_images = await res.json();
         resultant_images.push(originalImageUrl);
         if (res.status !== 200) {
-            setError("Failed to generate product shoots! Try again later.");
+            alert("Failed to generate product shoots! Try again later.");
         } else {
             console.log(resultant_images);
             router.push({
@@ -70,8 +73,8 @@ export function SettingsForm({ originalImageUrl }: any) {
             >
                 <option value="original">Original Product Size</option>
                 <option value="0.6 * width">60% Original Product Size</option>
-                <option value="0.5 * width" defaultChecked={true}>
-                    50% Size
+                <option value="0.5 * width" selected={true}>
+                    50% Original Product Size
                 </option>
                 <option value="0.4 * width">40% Original Product Size</option>
                 <option value="0.3 * width">30% Original Product Size</option>
@@ -116,26 +119,18 @@ export function SettingsForm({ originalImageUrl }: any) {
                 </label>
             </div>
             {loading && (
-                <button className="bg-black/80 rounded-xl text-white font-medium px-4 py-2 ">
+                <button className="bg-black/80 rounded-xl h-full text-white font-medium px-4 py-3 ">
                     <LoadingDots color="white" style="large" />
                 </button>
             )}
             {!loading && (
                 <button
                     type="submit"
-                    className="bg-black rounded-xl text-white font-medium px-4 py-3 hover:bg-black/80"
+                    className="bg-black rounded-xl h-full text-white font-medium px-4 py-3 hover:bg-black/80"
                     onClick={(e) => generatePhotos(e)}
                 >
                     Generate
                 </button>
-            )}
-            {error && (
-                <div
-                    className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-xl mt-8 max-w-[575px]"
-                    role="alert"
-                >
-                    {error}
-                </div>
             )}
         </form>
     );

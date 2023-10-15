@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import Results from "../components/Results";
 import { useReward } from "react-rewards";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 const Home: NextPage = () => {
     const router = useRouter();
@@ -35,6 +36,15 @@ const Home: NextPage = () => {
                 <h1 className="mx-auto max-w-4xl font-display text-3xl font-bold tracking-normal text-slate-900 sm:text-5xl mb-5">
                     Results
                 </h1>
+                <h3>
+                    Don't like the results?{" "}
+                    <Link
+                        href={"/create?image=" + images[5]}
+                        className="text-slate-900 font-bold underline"
+                    >
+                        Try again
+                    </Link>
+                </h3>
                 <span id="rewardId" />
                 <Results images={images} />
                 {/* {status === "authenticated" && data && ( */}
