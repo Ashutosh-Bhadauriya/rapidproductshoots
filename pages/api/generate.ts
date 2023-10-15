@@ -16,11 +16,6 @@ export default async function handler(
   req: ExtendedNextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  // Check if user is logged in
-  // const session = await getServerSession(req, res, authOptions);
-  // if (!session || !session.user) {
-  //   return res.status(500).json("Login to upload.");
-  // }
 
   const imageUrl = req.body.imageUrl;
   const prompt = req.body.prompt;
@@ -29,7 +24,7 @@ export default async function handler(
   const negative_prompt = req.body.negative_prompt;
   const enhance_prompt = req.body.enhance_prompt;
 
-  // POST request to Replicate to start the image restoration generation process
+  // POST request to Replicate to start the prediction process
   let startResponse = await fetch("https://api.replicate.com/v1/predictions", {
     method: "POST",
     headers: {
@@ -55,7 +50,7 @@ export default async function handler(
   console.log(jsonStartResponse);
   let endpointUrl = jsonStartResponse.urls.get;
 
-  // GET request to get the status of the image restoration process & return the result when it's ready
+  // GET request to get the status of the generation & return the result when it's ready
   let productImages: string[] | null = null;
   while (!productImages) {
     // Loop in 1s intervals until the alt text is ready

@@ -16,12 +16,33 @@ import Link from "next/link";
 import { SettingsForm } from "../components/SettingsForm";
 import { useRouter } from "next/router";
 
-const Home: NextPage = () => {
+export async function getServerSideProps() {
+    await new Promise((resolve) => setTimeout(resolve, 500));
+
+    const res = await fetch(process.env.PUBLIC_URL + "/api/getuser", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+
+    let user_id = await res.json();
+    if (res.status !== 200) {
+        user_id = null;
+    }
+    return {
+        props: {
+            user_id: user_id,
+        }, // passed to the page component as props
+    };
+}
+
+const Home: NextPage = ({ user_id }: any) => {
     const router = useRouter();
     const [originalPhoto, setOriginalPhoto] = useState<string | null>(null);
     const fetcher = (url: string) => fetch(url).then((res) => res.json());
     const { data, mutate } = useSWR("/api/remaining", fetcher);
-    // const { data: session, status } = useSession();
+
     useEffect(() => {
         if (router.isReady) {
             setOriginalPhoto(router.query.image as string);
@@ -78,13 +99,11 @@ const Home: NextPage = () => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            {/* <Header photo={session?.user?.image || undefined} /> */}
-            <Header photo={undefined} />
+            <Header user_id={user_id} />
             <main className="flex flex-1 w-full flex-col items-center justify-center text-center px-4 mt-4 sm:mb-0 mb-8">
                 <h1 className="mx-auto max-w-4xl font-display text-4xl font-bold tracking-normal text-slate-900 sm:text-6xl mb-5">
                     Generate Product Shoots
                 </h1>
-                {/* {status === "authenticated" && data && ( */}
                 {data && (
                     <p className="text-slate-500">
                         You have{" "}
@@ -103,46 +122,6 @@ const Home: NextPage = () => {
                 )}
                 <div className="flex justify-between items-center w-full flex-col mt-8">
                     {!originalPhoto && <UploadDropZone />}
-
-                    {/* {status === "loading" ? (
-                        <div className="max-w-[670px] h-[250px] flex justify-center items-center">
-                            <Rings
-                                height="100"
-                                width="100"
-                                color="black"
-                                radius="6"
-                                wrapperStyle={{}}
-                                wrapperClass=""
-                                visible={true}
-                                ariaLabel="rings-loading"
-                            />
-                        </div>
-                    ) : status === "authenticated" && !originalPhoto ? (
-                        <UploadDropZone />
-                    ) : (
-                        !originalPhoto && (
-                            <div className="h-[250px] flex flex-col items-center space-y-6 max-w-[670px] -mt-8">
-                                <div className="max-w-xl text-gray-600">
-                                    Sign in below with Google to create a free
-                                    account and restore your photos today. You
-                                    will be able to restore 5 photos per day for
-                                    free.
-                                </div>
-                                <button
-                                    onClick={() => signIn("google")}
-                                    className="bg-gray-200 text-black font-semibold py-3 px-6 rounded-2xl flex items-center space-x-2"
-                                >
-                                    <Image
-                                        src="/google.png"
-                                        width={20}
-                                        height={20}
-                                        alt="google's logo"
-                                    />
-                                    <span>Sign in with Google</span>
-                                </button>
-                            </div>
-                        )
-                    )} */}
                     {originalPhoto && (
                         <div className="md:flex-row flex-col flex justify-between w-full">
                             <Image
