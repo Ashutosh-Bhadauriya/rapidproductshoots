@@ -127,7 +127,7 @@ export default function Pricing() {
                                 />
                             </div>
                             <p className="text-sm sm:text-base">
-                                10 product shoots per month
+                                12 product shoots per month
                             </p>
                         </div>
                         <div className="mt-2 flex flex-row items-center">

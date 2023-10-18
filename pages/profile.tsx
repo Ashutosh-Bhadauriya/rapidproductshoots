@@ -51,7 +51,6 @@ const Home: NextPage = () => {
                             </div>
                         </div>
                     </main>
-
                     <Footer />
                 </>
             )}
