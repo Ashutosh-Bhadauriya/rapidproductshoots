@@ -1,12 +1,23 @@
 import Link from "next/link";
 import { User } from "lucide-react";
+import Image from "next/image";
 
 export default function Header({ user_id }: { user_id?: string | undefined }) {
     return (
         <header className="flex justify-between items-center w-full mt-2 border-b-2 pb-2 sm:px-4 px-2">
-            <Link href="/" className="flex space-x-2">
-                <h1 className="sm:text-4xl text-2xl font-bold ml-2 tracking-tight">
-                    ✨AI Product Shoots
+            <Link
+                href="/"
+                className="flex space-x-2 items-center justify-center"
+            >
+                <Image
+                    alt="app logo"
+                    src="/logo2.png"
+                    width={2000}
+                    height={2000}
+                    className="w-16 h-16"
+                />
+                <h1 className="sm:text-2xl text-xl font-bold ml-2 tracking-tight">
+                    RapidProductShoots
                 </h1>
             </Link>
 

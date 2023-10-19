@@ -8,8 +8,8 @@ html {
 
 hanko-auth, hanko-profile {
     --color: #111827;
-    --color-shade-1: ;
     --brand-color: #111827;
+    --brand-color-shade-1: #2e3033;
     --background-color: rgb(226 232 240);
     --font-family: "Inter";
     --headline1-font-size: 29px;

@@ -17,7 +17,7 @@ export default function Footer() {
                     </svg>
                 </Link>
                 <Link
-                    href="https://github.com/varun-balani/product-shoots"
+                    href="https://github.com/varun-balani/rapidproductshoots"
                     className="group"
                     aria-label="Varun Balani on GitHub"
                 >

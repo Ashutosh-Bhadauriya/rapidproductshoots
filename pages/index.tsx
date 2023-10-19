@@ -32,7 +32,7 @@ const Home: NextPage = () => {
                 <div className="flex justify-center space-x-4">
                     <a
                         className="bg-white rounded-xl text-black font-medium px-4 py-3 sm:mt-10 mt-8 hover:bg-gray-100 border"
-                        href="https://github.com/varun-balani/product-shoots"
+                        href="https://github.com/varun-balani/rapidproductshoots"
                         target="_blank"
                         rel="noreferrer"
                     >
