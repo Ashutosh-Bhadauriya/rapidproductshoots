@@ -90,7 +90,9 @@ export default function Pricing() {
                     )}
                 </div>
                 <div className="border w-max m-auto rounded-2xl py-1 px-4 text-slate-500 text-sm mb-5 hover:text-slate-600 transition duration-300 ease-in-out">
-                    <span className="font-semibold">Get 2 months free</span>{" "}
+                    <span className="font-semibold animate-text-rainbow bg-gradient-to-r from-teal-500 via-purple-500 to-orange-500 bg-clip-text text-transparent">
+                        Get 2 months free
+                    </span>{" "}
                     when you sign up for an annual plan
                 </div>
                 <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 md:gap-4">

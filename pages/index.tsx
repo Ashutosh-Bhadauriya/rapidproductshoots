@@ -16,18 +16,20 @@ const Home: NextPage = () => {
             <Header />
             <main className="flex flex-1 w-full flex-col items-center justify-center text-center px-4 sm:mt-28 mt-20">
                 <h1 className="mx-auto max-w-4xl font-display text-5xl font-bold text-slate-900 sm:text-7xl">
-                    Create product shoots
+                    Create
                     <br className="md:invisible md:hidden" />{" "}
-                    <span className="bg-yellow-300 inline-block my-4 mr-1">
-                        with AI
+                    <span className="animate-text-rainbow bg-gradient-to-r from-teal-500 via-purple-500 to-orange-500 bg-clip-text text-transparent my-4 mr-1">
+                        beautiful
                     </span>
-                    <br className="md:invisible md:hidden" /> in 2 minutes.
+                    <br className="md:invisible md:hidden" /> product shoots
+                    with AI
                 </h1>
 
                 <p className="mx-auto mt-6 max-w-xl text-lg text-slate-700 leading-7">
-                    Need to create beautiful, branded product shoots fast? Let
-                    our AI do the hard work for you and create stunning product
-                    shoots in minutes.
+                    Need to create beautiful product shoots fast but can't spend
+                    thousands on a professional photographer? Let our AI do the
+                    hard work for you and create stunning product shoots that
+                    boost sales.
                 </p>
                 <div className="flex justify-center space-x-4">
                     <a

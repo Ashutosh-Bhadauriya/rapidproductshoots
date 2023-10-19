@@ -6,7 +6,7 @@ export default function LoginPageHero() {
             <div className="text-3xl font-bold text-slate-50 max-w-prose pt-8 px-8">
                 Generate beautiful product shoots instantly with the power of AI
                 to
-                <span className="animate-text-gradient bg-gradient-to-r from-teal-500 via-purple-500 to-orange-500 bg-clip-text text-transparent font-black">
+                <span className="animate-text-rainbow bg-gradient-to-r from-teal-500 via-purple-500 to-orange-500 bg-clip-text text-transparent font-black">
                     {" "}
                     boost your sales{" "}
                 </span>
