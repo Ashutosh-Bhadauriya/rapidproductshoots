@@ -70,7 +70,6 @@ export default async function handler(
                     pixel: image_resolution,
                     product_size: product_size,
                     api_key: enhance_prompt ? process.env.OPENAI_API_KEY : "",
-                    manual_seed: 10,
                 },
             }),
         }
