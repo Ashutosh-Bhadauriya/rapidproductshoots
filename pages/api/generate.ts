@@ -47,14 +47,7 @@ export default async function handler(
     const image_resolution = req.body.image_resolution;
     const negative_prompt = req.body.negative_prompt;
     const enhance_prompt = req.body.enhance_prompt;
-    console.log(
-        imageUrl,
-        prompt,
-        product_size,
-        image_resolution,
-        negative_prompt,
-        enhance_prompt
-    );
+
     // POST request to Replicate to start the prediction process
     let startResponse = await fetch(
         "https://api.replicate.com/v1/predictions",
@@ -77,6 +70,7 @@ export default async function handler(
                     pixel: image_resolution,
                     product_size: product_size,
                     api_key: enhance_prompt ? process.env.OPENAI_API_KEY : "",
+                    manual_seed: 10,
                 },
             }),
         }

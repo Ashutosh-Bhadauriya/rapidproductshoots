@@ -7,7 +7,7 @@ export function SettingsForm({ originalImageUrl }: any) {
     const [productSize, setProductSize] = useState("0.5 * width");
     const [imageResolution, setImageResolution] = useState("1024 * 1024");
     const [negativePrompt, setNegativePrompt] = useState(
-        "illustration, 3d, sepia, painting, cartoons, sketch, (worst quality:2)"
+        "text, watermark, painting, cartoons, sketch,worst quality"
     );
     const [aiPromptEnhancement, setAiPromptEnhancement] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -30,10 +30,10 @@ export function SettingsForm({ originalImageUrl }: any) {
             },
             body: JSON.stringify({
                 imageUrl: originalImageUrl,
-                prompt,
-                productSize,
-                imageResolution,
-                negativePrompt,
+                prompt: prompt,
+                product_size: productSize,
+                image_resolution: imageResolution,
+                negative_prompt: negativePrompt,
                 aiPromptEnhancement,
             }),
         });
@@ -106,7 +106,7 @@ export function SettingsForm({ originalImageUrl }: any) {
                 type="text"
                 className="border-2 border-slate-200 rounded-md p-2 !mt-1"
                 placeholder="Enter negative prompt for product shoot"
-                defaultValue="illustration, 3d, sepia, painting, cartoons, sketch, (worst quality:2)"
+                defaultValue="text, watermark, painting, cartoons, sketch,worst quality"
                 onChange={(e) => setNegativePrompt(e.target.value)}
             />
             <div className="whitespace-nowrap">
