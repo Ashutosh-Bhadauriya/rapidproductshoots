@@ -16,6 +16,12 @@ export default function HankoLogout() {
 
     const logout = async () => {
         try {
+            fetch("/api/logout", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
             await hanko?.user.logout();
             router.replace("/");
             return;

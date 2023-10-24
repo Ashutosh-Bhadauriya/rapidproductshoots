@@ -15,6 +15,7 @@ import useSWR from "swr";
 import Link from "next/link";
 import { SettingsForm } from "../components/SettingsForm";
 import { useRouter } from "next/router";
+import { Hanko } from "@teamhanko/hanko-elements";
 
 const Home: NextPage = () => {
     const router = useRouter();
@@ -29,6 +30,39 @@ const Home: NextPage = () => {
             setOriginalPhoto(router.query.image as string);
         }
     }, [router.isReady]);
+
+    const [hanko, setHanko] = useState<Hanko>();
+
+    useEffect(() => {
+        const importHanko = async () => {
+            const hankoApi = process.env.NEXT_PUBLIC_HANKO_API_URL;
+            if (!hankoApi) return;
+
+            import("@teamhanko/hanko-elements").then(({ Hanko }) =>
+                setHanko(new Hanko(hankoApi))
+            );
+        };
+        importHanko();
+        // Cleanup function
+        return () => {};
+    }, []);
+
+    useEffect(() => {
+        const createOrGetUser = async () => {
+            if (hanko === undefined) return;
+
+            const { id, email } = await hanko.user.getCurrent();
+
+            fetch("/api/createuser", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ id, email }),
+            });
+        };
+        createOrGetUser();
+    }, [hanko]);
 
     const options: UploadWidgetConfig = {
         apiKey: !!process.env.NEXT_PUBLIC_UPLOAD_API_KEY
