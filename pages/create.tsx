@@ -16,6 +16,7 @@ import Link from "next/link";
 import { SettingsForm } from "../components/SettingsForm";
 import { useRouter } from "next/router";
 import { Hanko } from "@teamhanko/hanko-elements";
+import Loading from "react-loading-components";
 
 const Home: NextPage = () => {
     const router = useRouter();
@@ -84,8 +85,11 @@ const Home: NextPage = () => {
         },
     };
 
-    const UploadDropZone = () => (
+    const UploadDropZone = ({ disabled }: { disabled: boolean }) => (
         <UploadDropzone
+            className={`${
+                disabled === true ? "pointer-events-none blur-[2px]" : ""
+            }`}
             options={options}
             onUpdate={({ uploadedFiles }) => {
                 if (uploadedFiles.length !== 0) {
@@ -112,7 +116,19 @@ const Home: NextPage = () => {
                 <title>AI Product Shoots</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-
+            {(!user_data || !data) && (
+                <div className="flex justify-center items-center flex-col">
+                    <h1 className="text-2xl mb-4 font-bold">
+                        Preparing Dashboard
+                    </h1>
+                    <Loading
+                        type="three_dots"
+                        fill="#000"
+                        height={"20%"}
+                        width={"20%"}
+                    />
+                </div>
+            )}
             {user_data && data && (
                 <>
                     <Header user_id={user_data.user_id} />
@@ -120,23 +136,44 @@ const Home: NextPage = () => {
                         <h1 className="mx-auto max-w-4xl font-display text-4xl font-bold tracking-normal text-slate-900 sm:text-6xl mb-5">
                             Generate Product Shoots
                         </h1>
+                        {data.remainingGenerations < 4 && (
+                            <p className="text-slate-500">
+                                You are out of generations for this month.
+                                <Link
+                                    href="/upgrade"
+                                    className="font-bold text-slate-900 underline"
+                                >
+                                    Upgrade
+                                </Link>{" "}
+                                your plan now!
+                            </p>
+                        )}
+                        {data.remainingGenerations >= 4 && (
+                            <p className="text-slate-500">
+                                You have{" "}
+                                <span className="font-semibold">
+                                    {data.remainingGenerations} generations
+                                </span>{" "}
+                                left this month. Need more generations?{" "}
+                                <Link
+                                    href="/upgrade"
+                                    className="font-bold text-slate-900 underline"
+                                >
+                                    Upgrade
+                                </Link>{" "}
+                                your plan now!
+                            </p>
+                        )}
 
-                        <p className="text-slate-500">
-                            You have{" "}
-                            <span className="font-semibold">
-                                {data.remainingGenerations} generations
-                            </span>{" "}
-                            left this month. Need more generations?{" "}
-                            <Link
-                                href="/upgrade"
-                                className="font-bold text-slate-900 underline"
-                            >
-                                Upgrade
-                            </Link>{" "}
-                            your plan now!
-                        </p>
                         <div className="flex justify-between items-center w-full flex-col mt-8">
-                            {!originalPhoto && <UploadDropZone />}
+                            {!originalPhoto &&
+                                data.remainingGenerations < 4 && (
+                                    <UploadDropZone disabled={true} />
+                                )}
+                            {!originalPhoto &&
+                                data.remainingGenerations >= 4 && (
+                                    <UploadDropZone disabled={false} />
+                                )}
                             {originalPhoto && (
                                 <div className="md:flex-row flex-col flex justify-between w-full">
                                     <Image

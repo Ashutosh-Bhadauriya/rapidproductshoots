@@ -27,6 +27,20 @@ export default async function handler(
     const parsed_cookies = cookie.parse(cookies);
     const token = parsed_cookies.hanko;
     const payload = jose.decodeJwt(token ?? "");
+
+    const prisma = new PrismaClient();
+    const credits = await prisma.user.findUnique({
+        select: {
+            credits: true,
+        },
+        where: {
+            id: payload.sub,
+        },
+    });
+    if (credits === null || credits.credits < 4) {
+        return res.status(500).send("Error: Not enough credits");
+    }
+
     const imageUrl = req.body.imageUrl;
     const prompt = req.body.prompt;
     const product_size = req.body.product_size;
@@ -82,7 +96,6 @@ export default async function handler(
 
         if (jsonFinalResponse.status === "succeeded") {
             productImages = jsonFinalResponse.output;
-            const prisma = new PrismaClient();
             await prisma.user.update({
                 where: {
                     id: payload.sub,
