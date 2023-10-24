@@ -4,7 +4,7 @@ import { PrismaClient } from "@prisma/client";
 import cookie from "cookie";
 import * as jose from "jose";
 
-type Data = string[] | string;
+type Data = any;
 interface ExtendedNextApiRequest extends NextApiRequest {
     body: {
         imageUrl: string;
@@ -38,7 +38,7 @@ export default async function handler(
         },
     });
     if (credits === null || credits.credits < 4) {
-        return res.status(500).send("Error: Not enough credits");
+        return res.status(500).json({ error: "Not enough credits" });
     }
 
     const imageUrl = req.body.imageUrl;
@@ -47,7 +47,14 @@ export default async function handler(
     const image_resolution = req.body.image_resolution;
     const negative_prompt = req.body.negative_prompt;
     const enhance_prompt = req.body.enhance_prompt;
-
+    console.log(
+        imageUrl,
+        prompt,
+        product_size,
+        image_resolution,
+        negative_prompt,
+        enhance_prompt
+    );
     // POST request to Replicate to start the prediction process
     let startResponse = await fetch(
         "https://api.replicate.com/v1/predictions",
@@ -115,6 +122,6 @@ export default async function handler(
     if (productImages !== null) {
         res.status(200).send(productImages);
     } else {
-        res.status(500).send("Failed to generate image");
+        res.status(500).json({ error: "Failed to generate image" });
     }
 }

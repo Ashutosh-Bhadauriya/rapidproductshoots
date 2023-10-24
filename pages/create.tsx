@@ -16,6 +16,7 @@ import Link from "next/link";
 import { SettingsForm } from "../components/SettingsForm";
 import { useRouter } from "next/router";
 import { Hanko } from "@teamhanko/hanko-elements";
+// @ts-ignore
 import Loading from "react-loading-components";
 
 const Home: NextPage = () => {
@@ -138,7 +139,7 @@ const Home: NextPage = () => {
                         </h1>
                         {data.remainingGenerations < 4 && (
                             <p className="text-slate-500">
-                                You are out of generations for this month.
+                                You are out of generations for this month.{" "}
                                 <Link
                                     href="/upgrade"
                                     className="font-bold text-slate-900 underline"

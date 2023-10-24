@@ -39,10 +39,16 @@ export function SettingsForm({ originalImageUrl }: any) {
         });
 
         let resultant_images = await res.json();
-        resultant_images.push(originalImageUrl);
         if (res.status !== 200) {
-            alert("Failed to generate product shoots! Try again later.");
+            if (resultant_images.error === "Not enough credits") {
+                alert(
+                    "Not enough credits! Please upgrade your plan to continue."
+                );
+            } else {
+                alert("Failed to generate product shoots! Try again later.");
+            }
         } else {
+            resultant_images.push(originalImageUrl);
             console.log(resultant_images);
             router.push({
                 pathname: "/result",
