@@ -24,7 +24,6 @@ export default async function handler(
             id: payload.sub,
         },
     });
-    console.log(credits);
     res.status(200).json({
         remainingGenerations: credits === null ? 0 : credits.credits,
     });
