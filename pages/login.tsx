@@ -26,8 +26,6 @@ export default function LoginPage() {
                     </Suspense>
                 </div>
             </main>
-
-            <Footer />
         </div>
     );
 }

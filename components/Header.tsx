@@ -40,13 +40,13 @@ export default function Header({ user_id }: { user_id?: string | undefined }) {
                 <div className="flex justify-between">
                     <Link
                         className="mr-2 rounded-xl text-slate-900 font-medium px-4 py-3 hover:bg-slate-100"
-                        href="#features"
+                        href="/#features"
                     >
                         Benefits
                     </Link>
                     <Link
                         className="mr-4 rounded-xl text-slate-900 font-medium px-4 py-3 hover:bg-slate-100"
-                        href="#pricing"
+                        href="/#pricing"
                     >
                         Pricing
                     </Link>

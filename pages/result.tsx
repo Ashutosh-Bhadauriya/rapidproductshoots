@@ -52,7 +52,6 @@ const Home: NextPage = () => {
                         <span id="rewardId" />
                         <Results images={images} />
                     </main>
-                    <Footer />
                 </>
             )}
         </div>

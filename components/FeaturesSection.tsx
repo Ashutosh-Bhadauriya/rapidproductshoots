@@ -51,7 +51,10 @@ export function FeaturesSection() {
                     <div className="space-y-6">
                         {features.map((feature, index) => {
                             return (
-                                <div className="flex md:flex-row flex-col justify-between items-center md:space-y-12">
+                                <div
+                                    key={index}
+                                    className="flex md:flex-row flex-col justify-between items-center md:space-y-12"
+                                >
                                     {index % 2 == 0 && (
                                         <div className="hidden invisible md:visible flex-col md:flex text-center md:text-left text-slate-900 mr-6">
                                             <div className="max-w-max text-2xl font-bold tracking-normal bg-yellow-300 sm:text-4xl mb-4">

@@ -21,8 +21,8 @@ const Home: NextPage = () => {
                     <span className="animate-text-rainbow bg-gradient-to-r from-teal-500 via-purple-500 to-orange-500 bg-clip-text text-transparent my-4 mr-1">
                         beautiful
                     </span>
-                    <br className="md:invisible md:hidden" /> product shoots
-                    with AI
+                    <br className="md:invisible md:hidden" /> product shoots on
+                    a budget
                 </h1>
 
                 <p className="mx-auto mt-6 max-w-xl text-lg text-slate-700 leading-7">
