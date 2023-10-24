@@ -133,7 +133,7 @@ const Home: NextPage = () => {
                             >
                                 Upgrade
                             </Link>{" "}
-                            to a premium plan now!
+                            your plan now!
                         </p>
                         <div className="flex justify-between items-center w-full flex-col mt-8">
                             {!originalPhoto && <UploadDropZone />}
