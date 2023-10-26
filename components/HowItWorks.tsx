@@ -21,7 +21,7 @@ export default function HowItWorks() {
     });
 
     return (
-        <section>
+        <section id="howitworks">
             <div className="mx-auto w-full max-w-7xl px-5 py-16 md:px-10 md:py-24 lg:py-32">
                 <p className="animate-text-rainbow bg-gradient-to-r from-teal-500 via-purple-500 to-orange-500 bg-clip-text text-transparent text-center text-sm font-bold uppercase">
                     3 easy steps
