@@ -7,7 +7,7 @@ export function SettingsForm({ originalImageUrl }: any) {
     const [productSize, setProductSize] = useState("0.5 * width");
     const [imageResolution, setImageResolution] = useState("1024 * 1024");
     const [negativePrompt, setNegativePrompt] = useState(
-        "text, watermark, painting, cartoons, sketch,worst quality"
+        "text, watermark, painting, cartoons, sketch, worst quality"
     );
     const [aiPromptEnhancement, setAiPromptEnhancement] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -66,7 +66,7 @@ export function SettingsForm({ originalImageUrl }: any) {
             <textarea
                 className="border-2 border-slate-200 rounded-md p-2 !mt-1"
                 id="prompt"
-                placeholder="Enter product shoot prompt"
+                placeholder="bottle on a wooden platform, adorned with a beautiful flowers and surrounded by colorful decorative elements and greenery"
                 onChange={(e) => setPrompt(e.target.value)}
             />
             <label htmlFor="product_size" className="font-bold">
@@ -95,8 +95,12 @@ export function SettingsForm({ originalImageUrl }: any) {
                 onChange={(e) => setImageResolution(e.target.value)}
             >
                 <option value="1024 * 1024">1024 * 1024</option>
-                <option value="768 * 768">768 * 768</option>
-                <option value="512 * 512">512 * 512</option>
+                <option disabled={true} value="768 * 768">
+                    768 * 768
+                </option>
+                <option disabled={true} value="512 * 512">
+                    512 * 512
+                </option>
             </select>
             <label htmlFor="negative_prompt" className="font-bold">
                 Negative Prompt
@@ -106,7 +110,7 @@ export function SettingsForm({ originalImageUrl }: any) {
                 type="text"
                 className="border-2 border-slate-200 rounded-md p-2 !mt-1"
                 placeholder="Enter negative prompt for product shoot"
-                defaultValue="text, watermark, painting, cartoons, sketch,worst quality"
+                defaultValue="text, watermark, painting, cartoons, sketch, worst quality"
                 onChange={(e) => setNegativePrompt(e.target.value)}
             />
             <div className="whitespace-nowrap">

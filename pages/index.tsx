@@ -6,8 +6,17 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { FeaturesSection } from "../components/FeaturesSection";
 import Pricing from "../components/Pricing";
+import autoAnimate from "@formkit/auto-animate";
+import { useState, useRef, useEffect } from "react";
+import HowItWorks from "../components/HowItWorks";
 
 const Home: NextPage = () => {
+    const parent = useRef(null);
+
+    useEffect(() => {
+        parent.current && autoAnimate(parent.current);
+    }, [parent]);
+
     return (
         <div className="flex max-w-6xl mx-auto flex-col items-center justify-center py-2 min-h-screen">
             <Head>
@@ -48,6 +57,7 @@ const Home: NextPage = () => {
                         Get Started
                     </Link>
                 </div>
+                <HowItWorks />
                 <div className="flex justify-between items-center w-full flex-col sm:mt-10 mt-6">
                     <div className="flex flex-col space-y-10 mt-4 mb-16">
                         <div className="flex space-y-6 flex-col">
