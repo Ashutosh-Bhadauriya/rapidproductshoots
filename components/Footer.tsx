@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function Footer() {
     return (
         <footer>
-            <div className="flex-col py-20 lg:flex ">
+            <div className="flex-col pb-20 lg:flex ">
                 <div className="lg:flex lg:flex-row lg:justify-between">
                     <div>
                         <div className="flex justify-start items-center">
@@ -55,7 +55,7 @@ export default function Footer() {
                             </a>
                         </div>
                     </div>
-                    <div className="flex grow flex-row flex-wrap lg:mx-10 lg:flex-nowrap lg:justify-center">
+                    <div className="flex grow flex-row flex-wrap text-left lg:mx-10 lg:flex-nowrap lg:justify-center">
                         <div className="my-5 mr-8 flex max-w-[200px] grow basis-[100px] flex-col space-y-5 lg:mx-10">
                             <h2 className="font-inter font-medium text-black">
                                 SUPPORT
