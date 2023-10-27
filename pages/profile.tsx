@@ -32,9 +32,9 @@ const Home: NextPage = () => {
             {user_data && (
                 <>
                     <Header user_id={user_data.user_id} />
-                    <main className="flex flex-1 w-full flex-col items-center justify-start text-center px-4 mt-4 sm:mb-0 mb-8">
-                        <div className="flex space-x-8 justify-between items-start">
-                            <div className="flex flex-col items-center justify-center h-1/2 border-2 border-slate-300 rounded-2xl p-8 bg-slate-200">
+                    <main className="flex flex-1 w-full flex-col items-center justify-start text-center px-4 mt-4 mb-16">
+                        <div className="flex space-x-8 w-full justify-between items-start">
+                            <div className="flex flex-col w-full items-center justify-center h-1/2 border-2 border-slate-300 rounded-2xl p-8 bg-slate-200">
                                 <h3 className="text-slate-900 sm:text-2xl text-lg text-center font-bold underline">
                                     Profile Details
                                 </h3>
@@ -43,6 +43,7 @@ const Home: NextPage = () => {
                             </div>
                         </div>
                     </main>
+                    <Footer />
                 </>
             )}
         </div>
