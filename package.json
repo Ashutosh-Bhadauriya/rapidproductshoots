@@ -10,7 +10,7 @@
     "dependencies": {
         "@bytescale/upload-widget-react": "^4.9.0",
         "@formkit/auto-animate": "^0.8.0",
-        "@headlessui/react": "^1.7.7",
+        "@headlessui/react": "^1.7.17",
         "@hookform/resolvers": "^3.3.2",
         "@lemonsqueezy/lemonsqueezy.js": "^1.2.1",
         "@prisma/client": "^4.11.0",
