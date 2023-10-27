@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useReward } from "react-rewards";
 import Image from "next/image";
 
 export default function HowItWorks() {
@@ -14,12 +13,6 @@ export default function HowItWorks() {
         }, 3000);
         return () => clearInterval(interval);
     }, []);
-
-    const { reward, isAnimating } = useReward("rewardId", "confetti", {
-        lifetime: 500,
-        elementCount: 100,
-        spread: 600,
-    });
 
     const currentStepImage = (step: number) => {
         switch (step) {
@@ -36,7 +29,7 @@ export default function HowItWorks() {
 
     return (
         <section id="howitworks">
-            <div className="mx-auto w-full max-w-7xl px-5 py-16 md:px-10 md:py-24 lg:py-32">
+            <div className="mx-auto w-full max-w-7xl px-5 pt-16 pb-10 md:px-10 md:py-24 lg:py-32">
                 <p className="animate-text-rainbow bg-gradient-to-r from-teal-500 via-purple-500 to-orange-500 bg-clip-text text-transparent text-center text-sm font-bold uppercase">
                     3 easy steps
                 </p>

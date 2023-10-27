@@ -18,7 +18,7 @@ const Home: NextPage = () => {
     }, [parent]);
 
     return (
-        <div className="flex max-w-6xl mx-auto flex-col items-center justify-center py-2 min-h-screen">
+        <div className="flex md:max-w-6xl mx-auto flex-col items-center justify-center py-2 min-h-screen">
             <Head>
                 <title>AI Product Shoots</title>
             </Head>

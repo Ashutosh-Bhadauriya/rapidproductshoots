@@ -3,6 +3,11 @@ import Link from "next/link";
 
 const features = [
     {
+        headline: "Boost Sales",
+        content: `Stunning product shoots, carefully crafted by our AI, entice customers towards your product like never before. These shoots have a captivating appeal that grabs attention and drives your product off the shelves. Elevate your sales strategy, and watch as product orders keep flowing in.`,
+        image: "/handmade-necklace",
+    },
+    {
         headline: "Get Instant Results",
         content: `Get results instantly in a matter of seconds. Don't like the result? Just click the button again to generate new product shoots effortlessly and promptly. Our lightning-fast AI-powered system ensures you don't waste precious time waiting for your visuals, putting you ahead in your marketing game.`,
         image: "/result-2",
@@ -11,11 +16,6 @@ const features = [
         headline: "High Quality Photos",
         content: `Product images generated are not only delivered swiftly but also boast high resolutions and exceptional quality. You can confidently use them for your e-commerce store, social media platforms, or any other marketing channels, knowing they'll catch eyes and captivate potential customers with their impeccable clarity and sharpness.`,
         image: "/result-1",
-    },
-    {
-        headline: "Sell More",
-        content: `Beautiful product shoots, carefully crafted by our AI, entice customers towards your product like never before. These visuals have a captivating appeal that grabs attention and ultimately drives your product off the shelves. Elevate your sales strategy and watch your products fly off the virtual and physical shelves, all thanks to our enticing product visuals.`,
-        image: "/result-3",
     },
     {
         headline: "Value for Money",
@@ -39,28 +39,28 @@ export function FeaturesSection() {
         <section
             id="features"
             aria-label="Why should you use our product"
-            className="py-10"
+            className=""
         >
             <div className="mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="mx-auto text-center">
+                <div className="mx-auto text-left md:text-center">
                     <h1 className="mx-auto max-w-4xl text-4xl font-bold tracking-normalanimate-text-rainbow bg-gradient-to-r from-teal-500 via-purple-500 to-orange-500 bg-clip-text text-transparent sm:text-6xl">
                         Endless Benefits
                     </h1>
-                    <p className="mx-auto mt-6 max-w-xl text-lg pb-4 text-slate-700 leading-7">
+                    <p className="mx-auto mt-6 max-w-xl text-lg pb-8 md:pb-4 text-slate-700 leading-7">
                         Use the power of AI to create stunning, eye-catching
                         product images effortlessly. Our platform offers a wide
                         range of benefits to help you showcase your products in
                         the best possible light.
                     </p>
-                    <div className="space-y-6">
+                    <div className="md:space-y-12">
                         {features.map((feature, index) => {
                             return (
                                 <div
                                     key={index}
-                                    className="flex md:flex-row flex-col justify-between items-center md:space-y-12"
+                                    className="flex md:flex-row flex-col justify-between items-center md:space-y-12 mt-4 md:mt-0"
                                 >
                                     {index % 2 == 0 && (
-                                        <div className="hidden invisible md:visible flex-col md:flex text-center md:text-left text-slate-900 mr-6">
+                                        <div className="hidden invisible md:visible flex-col md:flex md:text-left text-slate-900 mr-6">
                                             <div className="max-w-max text-2xl font-bold tracking-normal animate-text-rainbow bg-gradient-to-r from-teal-500 via-purple-500 to-orange-500 bg-clip-text text-transparent sm:text-4xl mb-4">
                                                 {feature.headline}
                                             </div>
@@ -68,7 +68,7 @@ export function FeaturesSection() {
                                                 {feature.content}
                                             </div>
                                             <Link
-                                                className="bg-black rounded-xl w-1/2 self-start mt-8 text-center text-white font-medium px-4 py-3 hover:bg-black/80"
+                                                className="bg-black rounded-xl w-1/2 self-center md:self-start mt-8 text-center text-white font-medium px-4 py-3 hover:bg-black/80"
                                                 href="/create"
                                             >
                                                 Get Started With Your First
@@ -77,22 +77,22 @@ export function FeaturesSection() {
                                         </div>
                                     )}
                                     <Image
-                                        alt="Restored photo of my bro"
+                                        alt="Product Shoot Image"
                                         width={400}
                                         height={400}
                                         src={feature.image + ".jpg"}
-                                        className="w-96 h-96 rounded-2xl md:mt-2"
+                                        className="w-100 h-100 rounded-2xl md:mt-2"
                                     />
                                     {
-                                        <div className="md:hidden md:invisible flex-col text-center md:text-left text-slate-900 my-8">
+                                        <div className="md:hidden md:invisible flex flex-col text-slate-900 my-8">
                                             <div className="max-w-max font-display text-2xl font-bold tracking-normal animate-text-rainbow bg-gradient-to-r from-teal-500 via-purple-500 to-orange-500 bg-clip-text text-transparent sm:text-4xl mb-4">
                                                 {feature.headline}
                                             </div>
-                                            <div className="text-xl max-w-prose">
+                                            <div className="text-xl max-w-prose mb-8">
                                                 {feature.content}
                                             </div>
                                             <Link
-                                                className="bg-black rounded-xl w-1/2 self-start mt-8 text-center text-white font-medium px-4 py-3 hover:bg-black/80"
+                                                className="bg-black rounded-xl md:self-start text-center text-white font-medium px-6 py-4 mb-4 hover:bg-black/80"
                                                 href="/create"
                                             >
                                                 Get Started With Your First
@@ -101,7 +101,7 @@ export function FeaturesSection() {
                                         </div>
                                     }
                                     {index % 2 == 1 && (
-                                        <div className="hidden invisible md:visible flex-col md:flex text-center md:text-left text-slate-900 ml-6">
+                                        <div className="hidden invisible md:visible flex-col md:flex md:text-left text-slate-900 ml-6">
                                             <div className="max-w-max font-display text-2xl font-bold tracking-normal animate-text-rainbow bg-gradient-to-r from-teal-500 via-purple-500 to-orange-500 bg-clip-text text-transparent inline-block sm:text-4xl mb-4">
                                                 {feature.headline}
                                             </div>
