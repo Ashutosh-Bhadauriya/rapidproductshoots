@@ -5,7 +5,7 @@ const features = [
     {
         headline: "Boost Sales",
         content: `Stunning product shoots, carefully crafted by our AI, entice customers towards your product like never before. These shoots have a captivating appeal that grabs attention and drives your product off the shelves. Elevate your sales strategy, and watch as product orders keep flowing in.`,
-        image: "/handmade-necklace",
+        image: "/necklace",
     },
     {
         headline: "Get Instant Results",
