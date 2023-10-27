@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Link from "next/link";
 
 export default function Pricing() {
     const [isMonthly, setIsMonthly] = useState(true);
@@ -114,12 +115,12 @@ export default function Pricing() {
                                 {isMonthly ? "/month" : "/year"}
                             </span>
                         </h2>
-                        <a
-                            href="#"
-                            className="mb-5 inline-block w-full rounded-md bg-black px-6 py-3 text-center font-semibold text-white md:mb-6"
+                        <Link
+                            className="mb-5 inline-block w-full rounded-md bg-black px-6 py-3 text-center font-semibold text-white md:mb-6 hover:bg-black/80"
+                            href="/create"
                         >
-                            Get started
-                        </a>
+                            Get Started
+                        </Link>
                         <div className="mt-2 flex flex-row items-center">
                             <div className="mr-2 flex w-4 flex-row items-center">
                                 <img
@@ -187,12 +188,12 @@ export default function Pricing() {
                                 {isMonthly ? "/month" : "/year"}
                             </span>
                         </h2>
-                        <a
-                            href="#"
-                            className="mb-5 inline-block w-full rounded-md bg-black px-6 py-3 text-center font-semibold text-white md:mb-6"
+                        <Link
+                            className="mb-5 inline-block w-full rounded-md bg-black px-6 py-3 text-center font-semibold text-white md:mb-6 hover:bg-black/80"
+                            href="/create"
                         >
-                            Get started
-                        </a>
+                            Get Started
+                        </Link>
                         <div className="mt-2 flex flex-row items-center">
                             <div className="mr-2 flex w-4 flex-row items-center">
                                 <img
@@ -286,12 +287,12 @@ export default function Pricing() {
                                 {isMonthly ? "/month" : "/year"}
                             </span>
                         </h2>
-                        <a
-                            href="#"
-                            className="mb-5 inline-block w-full rounded-md bg-black px-6 py-3 text-center font-semibold text-white md:mb-6"
+                        <Link
+                            className="mb-5 inline-block w-full rounded-md bg-black px-6 py-3 text-center font-semibold text-white md:mb-6 hover:bg-black/80"
+                            href="/create"
                         >
-                            Get started
-                        </a>
+                            Get Started
+                        </Link>
                         <div className="mt-2 flex flex-row items-center">
                             <div className="mr-2 flex w-4 flex-row items-center">
                                 <img
