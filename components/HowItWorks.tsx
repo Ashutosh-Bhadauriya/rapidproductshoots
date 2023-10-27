@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useReward } from "react-rewards";
+import Image from "next/image";
 
 export default function HowItWorks() {
     const [step, setStep] = useState(0);
@@ -19,6 +20,19 @@ export default function HowItWorks() {
         elementCount: 100,
         spread: 600,
     });
+
+    const currentStepImage = (step: number) => {
+        switch (step) {
+            case 0:
+                return "/shoot-2-base-solid.jpg";
+            case 1:
+                return "/mockup-final.png";
+            case 2:
+                return "/shoot-2-result-3.jpg";
+            default:
+                return "/shoot-2-base-solid.jpg";
+        }
+    };
 
     return (
         <section id="howitworks">
@@ -101,7 +115,9 @@ export default function HowItWorks() {
                                 </p>
                             </div>
                             <div className="ml-4 flex flex-col gap-2">
-                                <h5 className="text-xl font-bold">Voila</h5>
+                                <h5 className="text-xl font-bold animate-text-rainbow bg-gradient-to-r from-teal-500 via-purple-500 to-orange-500 bg-clip-text text-transparent">
+                                    Boost Sales
+                                </h5>
                                 <p className="text-sm text-[#636262]">
                                     Wait for a few seconds as our AI does the
                                     hard work and use the beautiful product
@@ -117,15 +133,11 @@ export default function HowItWorks() {
                         </Link>
                     </div>
                     <span id="rewardId" />
-                    <img
-                        alt="original bottle image"
-                        src={
-                            step === 0
-                                ? "/shoot-2-base-solid.jpg"
-                                : step === 1
-                                ? "/mockup-final.png"
-                                : "/shoot-2-result-3.jpg"
-                        }
+                    <Image
+                        src={currentStepImage(step)}
+                        alt="Stages of product shoot generation"
+                        width={5000}
+                        height={5000}
                         className={
                             "rounded-xl block h-full w-full overflow-hidden [grid-area:1/1/2/2] lg:[grid-area:1/1/2/2]" +
                             (step === 1

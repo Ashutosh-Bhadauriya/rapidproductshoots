@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const features = [
     {
@@ -42,11 +43,14 @@ export function FeaturesSection() {
         >
             <div className="mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="mx-auto text-center">
-                    <h1 className="mx-auto max-w-4xl text-4xl font-bold tracking-normal bg-yellow-300 inline-block text-slate-900 sm:text-6xl">
+                    <h1 className="mx-auto max-w-4xl text-4xl font-bold tracking-normalanimate-text-rainbow bg-gradient-to-r from-teal-500 via-purple-500 to-orange-500 bg-clip-text text-transparent sm:text-6xl">
                         Endless Benefits
                     </h1>
                     <p className="mx-auto mt-6 max-w-xl text-lg pb-4 text-slate-700 leading-7">
-                        See why you should use our AI Product Shoot generator.
+                        Use the power of AI to create stunning, eye-catching
+                        product images effortlessly. Our platform offers a wide
+                        range of benefits to help you showcase your products in
+                        the best possible light.
                     </p>
                     <div className="space-y-6">
                         {features.map((feature, index) => {
@@ -57,12 +61,19 @@ export function FeaturesSection() {
                                 >
                                     {index % 2 == 0 && (
                                         <div className="hidden invisible md:visible flex-col md:flex text-center md:text-left text-slate-900 mr-6">
-                                            <div className="max-w-max text-2xl font-bold tracking-normal bg-yellow-300 sm:text-4xl mb-4">
+                                            <div className="max-w-max text-2xl font-bold tracking-normal animate-text-rainbow bg-gradient-to-r from-teal-500 via-purple-500 to-orange-500 bg-clip-text text-transparent sm:text-4xl mb-4">
                                                 {feature.headline}
                                             </div>
                                             <div className="text-xl max-w-prose">
                                                 {feature.content}
                                             </div>
+                                            <Link
+                                                className="bg-black rounded-xl w-1/2 self-start mt-8 text-center text-white font-medium px-4 py-3 hover:bg-black/80"
+                                                href="/create"
+                                            >
+                                                Get Started With Your First
+                                                Shoot
+                                            </Link>
                                         </div>
                                     )}
                                     <Image
@@ -74,22 +85,36 @@ export function FeaturesSection() {
                                     />
                                     {
                                         <div className="md:hidden md:invisible flex-col text-center md:text-left text-slate-900 my-8">
-                                            <div className="max-w-max font-display text-2xl font-bold tracking-normal bg-yellow-300 sm:text-4xl mb-4">
+                                            <div className="max-w-max font-display text-2xl font-bold tracking-normal animate-text-rainbow bg-gradient-to-r from-teal-500 via-purple-500 to-orange-500 bg-clip-text text-transparent sm:text-4xl mb-4">
                                                 {feature.headline}
                                             </div>
                                             <div className="text-xl max-w-prose">
                                                 {feature.content}
                                             </div>
+                                            <Link
+                                                className="bg-black rounded-xl w-1/2 self-start mt-8 text-center text-white font-medium px-4 py-3 hover:bg-black/80"
+                                                href="/create"
+                                            >
+                                                Get Started With Your First
+                                                Shoot
+                                            </Link>
                                         </div>
                                     }
                                     {index % 2 == 1 && (
                                         <div className="hidden invisible md:visible flex-col md:flex text-center md:text-left text-slate-900 ml-6">
-                                            <div className="max-w-max font-display text-2xl font-bold tracking-normal bg-yellow-300 inline-block sm:text-4xl mb-4">
+                                            <div className="max-w-max font-display text-2xl font-bold tracking-normal animate-text-rainbow bg-gradient-to-r from-teal-500 via-purple-500 to-orange-500 bg-clip-text text-transparent inline-block sm:text-4xl mb-4">
                                                 {feature.headline}
                                             </div>
                                             <div className="text-xl max-w-prose">
                                                 {feature.content}
                                             </div>
+                                            <Link
+                                                className="bg-black rounded-xl w-1/2 self-start mt-8 text-center text-white font-medium px-4 py-3 hover:bg-black/80"
+                                                href="/create"
+                                            >
+                                                Get Started With Your First
+                                                Shoot
+                                            </Link>
                                         </div>
                                     )}
                                 </div>

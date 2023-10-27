@@ -19,9 +19,10 @@ export default function Footer() {
                                 RapidProductShoots
                             </h1>
                         </div>
-                        <p className="font-inter mt-4 max-w-[350px] text-base font-light text-gray-500">
+                        <p className="font-inter mt-4 max-w-[350px] text-base text-left font-light text-gray-500">
                             Create beautiful product shoots for a fraction of
-                            the cost, instantly using AI.
+                            the cost, instantly using AI. Boost your sales and
+                            increase your margins by making use of our platform.
                         </p>
                         <div className="mb-8 mt-6 flex flex-row">
                             <a
