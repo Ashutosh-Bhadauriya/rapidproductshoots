@@ -18,12 +18,31 @@ export default function LoginPage() {
             </Head>
 
             <Header />
-            <main className="flex flex-1 w-full h-full flex-row items-stretch justify-start text-center px-4 mt-4 ">
+            <main className="flex flex-1 w-full h-full flex-row items-stretch justify-start text-center px-4 md:mt-4 ">
                 <LoginPageHero />
-                <div className="w-1/3 flex items-center justify-center rounded-2xl bg-slate-200">
+                <div className="hidden invisible md:visible w-2/3 md:flex flex-col items-center justify-center rounded-xl bg-slate-200">
+                    <div className="text-3xl font-bold text-slate-900 max-w-prose px-8">
+                        Generate beautiful product shoots instantly that
+                        <span className="animate-text-rainbow bg-gradient-to-r from-teal-500 via-purple-500 to-orange-500 bg-clip-text text-transparent">
+                            {" "}
+                            boost your sales{" "}
+                        </span>
+                        and save time and money
+                    </div>
+                    <div className="border-2 border-slate-500 rounded-2xl py-1 mt-4 px-4 text-slate-500 text-sm mb-5 hover:scale-105 transition duration-300 ease-in-out">
+                        <span className="font-semibold">1000+</span> product
+                        photos generated till date!
+                    </div>
                     <Suspense fallback={<div>Loading...</div>}>
                         <HankoAuth />
                     </Suspense>
+                </div>
+                <div className="md:hidden md:invisible rounded-xl bg-[url('/collage.png')] bg-cover">
+                    <div className="rounded-xl opacity-95">
+                        <Suspense fallback={<div>Loading...</div>}>
+                            <HankoAuth />
+                        </Suspense>
+                    </div>
                 </div>
             </main>
         </div>

@@ -34,7 +34,7 @@ hanko-profile {
 
 hanko-auth {
     --container-max-width: 640px;
-    --container-padding: 40px;
+    --container-padding: 0 30px 30px 30px;
 }
 
 hanko-profile {
