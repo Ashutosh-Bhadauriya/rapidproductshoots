@@ -23,7 +23,7 @@ export default function HankoLogout() {
                 },
             });
             await hanko?.user.logout();
-            router.push("/login");
+            router.push("/");
             router.reload();
             return;
         } catch (error) {
