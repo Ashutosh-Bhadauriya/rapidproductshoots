@@ -62,9 +62,8 @@ export default function HowItWorks() {
                                     Upload Product Picture
                                 </h5>
                                 <p className="text-sm text-[#636262]">
-                                    Just upload a clear picture of your product
-                                    taken on your smartphone and upload it to
-                                    our website.
+                                    Just upload a picture of your product to our
+                                    website to start the process.
                                 </p>
                             </div>
                         </div>

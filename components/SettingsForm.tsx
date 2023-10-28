@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 export function SettingsForm({ originalImageUrl }: any) {
     const [prompt, setPrompt] = useState("");
     const [productSize, setProductSize] = useState("0.5 * width");
-    const [imageResolution, setImageResolution] = useState("1024 * 1024");
+    const [imageResolution, setImageResolution] = useState("512 * 512");
     const [negativePrompt, setNegativePrompt] = useState(
         "text, watermark, painting, cartoons, sketch, worst quality"
     );
@@ -94,12 +94,12 @@ export function SettingsForm({ originalImageUrl }: any) {
                 className="border-2 border-slate-200 rounded-md p-2 !mt-1"
                 onChange={(e) => setImageResolution(e.target.value)}
             >
-                <option value="1024 * 1024">1024 * 1024</option>
+                <option value="512 * 512">512 * 512</option>
                 <option disabled={true} value="768 * 768">
                     768 * 768
                 </option>
-                <option disabled={true} value="512 * 512">
-                    512 * 512
+                <option disabled={true} value="1024 * 1024">
+                    1024 * 1024
                 </option>
             </select>
             <label htmlFor="negative_prompt" className="font-bold">

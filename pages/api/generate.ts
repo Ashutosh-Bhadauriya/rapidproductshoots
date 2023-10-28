@@ -82,7 +82,7 @@ export default async function handler(
     // GET request to get the status of the generation & return the result when it's ready
     let productImages: string[] | null = null;
     while (!productImages) {
-        // Loop in 1s intervals until the alt text is ready
+        // Loop in 1s intervals until the shoots are ready
         console.log("polling for result...");
         let finalResponse = await fetch(endpointUrl, {
             method: "GET",
