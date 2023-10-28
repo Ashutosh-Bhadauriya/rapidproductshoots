@@ -30,8 +30,8 @@ export default function LoginPage() {
                         and save time and money
                     </div>
                     <div className="border-2 border-slate-500 rounded-2xl py-1 mt-4 px-4 text-slate-500 text-sm mb-5 hover:scale-105 transition duration-300 ease-in-out">
-                        <span className="font-semibold">1000+</span> product
-                        photos generated till date!
+                        <span className="font-semibold">1000+</span> beautiful
+                        product photos generated!
                     </div>
                     <Suspense fallback={<div>Loading...</div>}>
                         <HankoAuth />
