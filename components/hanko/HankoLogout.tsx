@@ -23,6 +23,8 @@ export default function HankoLogout() {
                 },
             });
             await hanko?.user.logout();
+            router.push("/login");
+            router.reload();
             return;
         } catch (error) {
             console.error("Error during logout:", error);

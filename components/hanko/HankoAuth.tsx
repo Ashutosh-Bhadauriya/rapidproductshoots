@@ -26,6 +26,7 @@ export default function HankoAuth() {
     useEffect(
         () =>
             hanko?.onAuthFlowCompleted(() => {
+                console.log("Auth flow complete");
                 redirectAfterLogin();
             }),
         [hanko, redirectAfterLogin]
