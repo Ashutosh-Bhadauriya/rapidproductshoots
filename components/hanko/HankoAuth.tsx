@@ -20,15 +20,12 @@ export default function HankoAuth() {
     }, []);
 
     const redirectAfterLogin = useCallback(() => {
-        router.replace("/create").then(() => {
-            router.reload();
-        });
+        router.replace("/create");
     }, [router]);
 
     useEffect(
         () =>
             hanko?.onAuthFlowCompleted(() => {
-                console.log("Auth flow complete");
                 redirectAfterLogin();
             }),
         [hanko, redirectAfterLogin]
