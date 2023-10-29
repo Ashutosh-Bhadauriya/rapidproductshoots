@@ -37,7 +37,7 @@ const Home: NextPage = () => {
                 <>
                     <Header user_id={user_data.user_id} />
                     <main className="flex flex-1 w-full flex-col items-center justify-start text-center px-4 mt-4 sm:mb-0 mb-8">
-                        <h1 className="mx-auto max-w-4xl font-display text-3xl font-bold tracking-normal text-slate-900 sm:text-5xl mb-5">
+                        <h1 className="mx-auto max-w-4xl font-display text-3xl font-bold tracking-normal text-slate-900 sm:text-5xl  mb-3 md:mb-5">
                             Results
                         </h1>
                         <h3>

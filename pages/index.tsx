@@ -24,6 +24,10 @@ const Home: NextPage = () => {
             </Head>
             <Header />
             <main className="flex flex-1 w-full flex-col items-center justify-center text-center px-4 sm:mt-28 mt-12">
+                <div className="border-2 border-slate-500 rounded-2xl py-1 mt-4 px-4 text-slate-500 text-sm mb-5 hover:scale-105 transition duration-300 ease-in-out">
+                    <span className="font-semibold">1000+</span> beautiful
+                    product photos generated!
+                </div>
                 <h1 className="mx-auto max-w-4xl font-display text-5xl font-bold text-slate-900 sm:text-7xl">
                     Create
                     <span className="animate-text-rainbow bg-gradient-to-r from-teal-500 via-purple-500 to-orange-500 bg-clip-text text-transparent my-4 mr-1">

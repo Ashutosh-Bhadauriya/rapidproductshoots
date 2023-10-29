@@ -14,3 +14,10 @@ model User {
   credits       Int
 }
 
+model Generations {
+  id                    String   @id @default(uuid())
+  user_id               String   
+  original_image        String
+  generated_images     String[]
+}
+

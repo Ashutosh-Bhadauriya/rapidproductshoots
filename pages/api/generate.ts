@@ -4,6 +4,8 @@ import { PrismaClient } from "@prisma/client";
 import cookie from "cookie";
 import * as jose from "jose";
 
+export const maxDuration = 300;
+
 type Data = any;
 interface ExtendedNextApiRequest extends NextApiRequest {
     body: {
@@ -28,6 +30,10 @@ export default async function handler(
     const token = parsed_cookies.hanko;
     const payload = jose.decodeJwt(token ?? "");
 
+    if (payload.sub === undefined) {
+        return res.status(500).send("Error: No user found");
+    }
+
     const prisma = new PrismaClient();
     const credits = await prisma.user.findUnique({
         select: {
@@ -48,8 +54,15 @@ export default async function handler(
     const negative_prompt = req.body.negative_prompt;
     const enhance_prompt = req.body.enhance_prompt;
 
+    const result = await prisma.generations.create({
+        data: {
+            user_id: payload.sub,
+            original_image: imageUrl,
+        },
+    });
+    const generation_id = result.id;
     // POST request to Replicate to start the prediction process
-    let startResponse = await fetch(
+    const startResponse = await fetch(
         "https://api.replicate.com/v1/predictions",
         {
             method: "POST",
@@ -71,6 +84,15 @@ export default async function handler(
                     product_size: product_size,
                     api_key: enhance_prompt ? process.env.OPENAI_API_KEY : "",
                 },
+                webhook:
+                    process.env.PROJECT_URL +
+                    "?generation_id=" +
+                    generation_id +
+                    "&user_id=" +
+                    payload.sub +
+                    "&original_image=" +
+                    imageUrl,
+                webhook_events_filter: ["completed"],
             }),
         }
     );
