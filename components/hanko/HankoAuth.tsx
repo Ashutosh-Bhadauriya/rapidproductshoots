@@ -20,7 +20,7 @@ export default function HankoAuth() {
     }, []);
 
     const redirectAfterLogin = useCallback(() => {
-        router.replace("/create");
+        router.reload();
     }, [router]);
 
     useEffect(
