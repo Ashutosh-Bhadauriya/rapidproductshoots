@@ -26,7 +26,6 @@ export default function HankoAuth() {
     useEffect(
         () =>
             hanko?.onAuthFlowCompleted(() => {
-                router.reload();
                 redirectAfterLogin();
             }),
         [hanko, redirectAfterLogin]
